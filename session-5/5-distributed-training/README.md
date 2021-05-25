@@ -8,19 +8,19 @@ This `train.py` is ready to use for distributed training, which is the fastest w
 For training with a single node you can run:
 
 ```
->>> python main.py -a resnet50 --dist-url 'tcp://127.0.0.1:FREEPORT' --dist-backend 'nccl' --multiprocessing-distributed --world-size 1 --rank 0
+>>> python train.py -a resnet50 --dist-url 'tcp://127.0.0.1:FREEPORT' --dist-backend 'nccl' --multiprocessing-distributed --world-size 1 --rank 0
 ```
 
 For training with multiple nodes, you have to run the following commands in each of the nodes:
 
 Node 0:
 ```
->>> python main.py -a resnet50 --dist-url 'tcp://IP_OF_NODE0:FREEPORT' --dist-backend 'nccl' --multiprocessing-distributed --world-size 2 --rank 0
+>>> python train.py -a resnet50 --dist-url 'tcp://IP_OF_NODE0:FREEPORT' --dist-backend 'nccl' --multiprocessing-distributed --world-size 2 --rank 0
 ```
 
 Node 1:
 ```
->>> python main.py -a resnet50 --dist-url 'tcp://IP_OF_NODE0:FREEPORT' --dist-backend 'nccl' --multiprocessing-distributed --world-size 2 --rank 1
+>>> python train.py -a resnet50 --dist-url 'tcp://IP_OF_NODE0:FREEPORT' --dist-backend 'nccl' --multiprocessing-distributed --world-size 2 --rank 1
 ```
 ...
 For more advanced utilization, you can take a look at the [official documentation](https://pytorch.org/docs/stable/distributed.html).
