@@ -131,6 +131,5 @@ dmypy.json
 # AIDL specific
 .vscode/
 session-2/data/
-session-5/data/
-
-session-5/solution/
+session-6/data/
+session-6/solution/
