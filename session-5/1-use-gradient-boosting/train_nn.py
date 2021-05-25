@@ -11,54 +11,43 @@ from sklearn.metrics import mean_absolute_error
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-
+# TODO Complete the model with 2 Linear layers and a Tanh activation between them
 class RegressionModel(nn.Module):
     def __init__(self, input_size, hidden_size):
-        super().__init__()
-        self.fc1 = nn.Linear(input_size, hidden_size)
-        self.fc2 = nn.Linear(hidden_size, 1)
+        ...
 
     def forward(self, x):
-        x = torch.tanh(self.fc1(x))
-        return self.fc2(x)
+        ...
 
 
 def train_epoch(dataloader, model, optimizer, criterion):
     # Train the model
     train_loss = 0
     for X, y in dataloader:
-        optimizer.zero_grad()
         X, y = X.to(device), y.to(device)
-        y_ = model(X)
-        loss = criterion(y_, y)
-        train_loss += loss.item() * len(y)
-        loss.backward()
-        optimizer.step()
+
+        ...
 
     return train_loss / len(dataloader.dataset)
 
-
+@torch.no_grad()
 def test_epoch(dataloader: DataLoader, model, criterion):
     test_loss = 0
     for X, y in dataloader:
         X, y = X.to(device), y.to(device)
-        with torch.no_grad():
-            y_ = model(X)
-            loss = criterion(y_, y)
-            test_loss += loss.item() * len(y)
+        ...
 
     return test_loss / len(dataloader.dataset)
 
-
+@torch.no_grad()
 def test_final_model(dataloader: DataLoader, model, y_mean, y_std):
     predictions = []
     targets = []
     for X, y in dataloader:
         X, y = X.to(device), y.to(device)
-        with torch.no_grad():
-            y_ = model(X)
-            predictions.append(y_.cpu().numpy())
-            targets.append(y.cpu().numpy())
+        y_ = model(X)
+        predictions.append(y_.cpu().numpy())
+        targets.append(y.cpu().numpy())
     predictions = np.concatenate(predictions)
     targets = np.concatenate(targets)
     predictions = predictions * y_std.item() + y_mean.item()
@@ -93,20 +82,20 @@ def train():
         -1, 1)
     test_X, test_y = torch.tensor(test_X, dtype=torch.float32), torch.tensor(test_y, dtype=torch.float32).reshape(-1, 1)
 
-    # Compute the mean and std in the correct dimension
-    x_mean = train_X.mean(dim=0)
-    x_std = train_X.std(dim=0)
-    y_mean = train_y.mean(dim=0)
-    y_std = train_y.std(dim=0)
+    # TODO Compute the mean and std in the correct dimension
+    x_mean = ...
+    x_std = ...
+    y_mean = ...
+    y_std = ...
 
-    # Apply it to our data ((data - mean)/std)
-    train_X = (train_X - x_mean) / x_std
-    train_y = (train_y - y_mean) / y_std
+    # TODO Apply it to our data (data = (data - mean)/std)
+    train_X = ...
+    train_y = ...
 
-    test_X = (test_X - x_mean) / x_std
-    test_y = (test_y - y_mean) / y_std
+    test_X = ...
+    test_y = ...
 
-    # Instantiate the datasets
+    # TODO Instantiate the datasets. You can use TensorDataset
     train_dataset = TensorDataset(train_X, train_y)
     test_dataset = TensorDataset(test_X, test_y)
 
@@ -119,11 +108,11 @@ def train():
     # Load the model
     model = RegressionModel(input_size, HIDDEN_SIZE).to(device)
 
-    # You should use a loss function appropriate for regression
-    criterion = torch.nn.MSELoss()
+    # TODO You should use a loss function appropriate for regression
+    criterion = ...
 
-    # Setup optimizer. SGD with lr=0.1 will work
-    optimizer = torch.optim.SGD(model.parameters(), lr=0.1)
+    # TODO Setup optimizer. SGD with lr=0.1 will work
+    optimizer = ...
 
     for epoch in range(N_EPOCHS):
         start_time = time.time()
