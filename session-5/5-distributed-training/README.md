@@ -24,4 +24,4 @@ Node 1:
 ```
 ...
 
-For more advanced utilization, you can take a look at the [official documentation](https://pytorch.org/docs/stable/distributed.html).
+For more advanced utilization, you can take a look at the [official tutorial](https://pytorch.org/tutorials/beginner/dist_overview.html) and the [official documentation](https://pytorch.org/docs/stable/distributed.html).
