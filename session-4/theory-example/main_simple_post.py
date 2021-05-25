@@ -14,7 +14,7 @@ def post_example():
     x = float(request.form["x"])
     y = float(request.form["y"])
     result = x + y
-    return f"The result is: {result}"
+    return f"The result is: {result}\n"
 
 
 app.run(host="localhost", port=8080, debug=True)
