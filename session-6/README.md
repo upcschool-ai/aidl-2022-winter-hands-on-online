@@ -1,8 +1,18 @@
-# Session 6
-Train and use a model using Docker.
+# Deep Learning Tips & Tricks
+
+This session has a compilation of tips for Deep Learning. Every folder contains a different tip you should try to apply.
 
 ## Installation
-You should create a Dockerfile and build the image using `docker build`
- 
-## Running the project
-Once the project is done, you can train it by running the command `docker run <IMAGE_NAME> train`, and predict with the command `docker run <IMAGE_NAME> predict <INPUT_FEATURES>`. Note that you will need to mount some volumes when using `docker run`, otherwise these commands won't work.
+### With Conda
+Create a conda environment by running
+```
+conda create --name aidl-session6 python=3.8
+```
+Then, activate the environment
+```
+conda activate aidl-session6
+```
+and install the dependencies
+```
+pip install -r requirements.txt
+```
