@@ -12,10 +12,14 @@ class TensorboardLogger(Logger):
         logdir = os.path.join("logs",
                               f"{task}-{datetime.datetime.now().strftime('%Y%m%d-%H%M%S')}")
 
-        # TODO: Initialize Tensorboard Writer with the previous folder
+        # TODO: Initialize Tensorboard Writer with the previous folder 'logdir'
 
 
     def log_reconstruction_training(self, model, epoch, train_loss_avg, val_loss_avg, reconstruction_grid):
+
+        # TODO: Log train reconstruction loss to tensorboard.
+        #  Tip: use "Reconstruction/train_loss" as tag
+
 
         # TODO: Log validation reconstruction loss to tensorboard.
         #  Tip: use "Reconstruction/val_loss" as tag
@@ -25,12 +29,13 @@ class TensorboardLogger(Logger):
         #  Use the reconstruction_grid variable returned above.
 
 
-        # TODO: Log train reconstruction loss to tensorboard.
-        #  Tip: use "Reconstruction/train_loss" as tag
-
-
         # TODO: Log the weights values and grads histograms.
         #  Tip: use f"{name}/value" and f"{name}/grad" as tags
+        for name, weight in model.encoder.named_parameters():
+            continue # remove this line when you complete the code
+
+
+        pass
 
 
 
@@ -55,17 +60,18 @@ class TensorboardLogger(Logger):
         #  Tip: use "Classification/train_acc" as tag
 
 
+        pass
+
+
     def log_model_graph(self, model, train_loader):
+        batch, _ = next(iter(train_loader))
         """
         TODO:
         We are going to log the graph of the model to Tensorboard. For that, we need to
-        provide an instance of the AutoEncoder model and a batch of images, like you'd
+        provide an instance of the model and a batch of images, like you'd
         do in a forward pass.
-
-        batch, _ = ...
-        writer. ...
-
         """
+
 
 
 
@@ -82,7 +88,7 @@ class TensorboardLogger(Logger):
         latent = torch.cat(list_latent)
         images = torch.cat(list_images)
 
-        # TODO: Log latent representations (embeddings)
+        # TODO: Log latent representations (embeddings) with their corresponding labels (images)
 
 
         # Be patient! Projector logs can take a while

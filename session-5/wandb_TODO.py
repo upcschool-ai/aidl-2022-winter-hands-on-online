@@ -16,18 +16,22 @@ class WandbLogger(Logger):
         wandb.init(project="hands-on-monitoring")
         wandb.run.name = f'{task}-{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}'
 
-        # TODO: Log weights and gradients to wandb
+        # TODO: Log weights and gradients to wandb. Doc: https://docs.wandb.ai/ref/python/watch
 
 
     def log_reconstruction_training(self, model, epoch, train_loss_avg,
                                     val_loss_avg, reconstruction_grid):
-        # TODO: Log a batch of reconstructed images from the validation set
+
+        # TODO: Log train reconstruction loss to wandb
 
 
         # TODO: Log validation reconstruction loss to wandb
 
 
-        # TODO: Log train reconstruction loss to wandb
+        # TODO: Log a batch of reconstructed images from the validation set
+
+
+        pass
 
 
     def log_classification_training(self, model, epoch, train_loss_avg,
@@ -50,6 +54,9 @@ class WandbLogger(Logger):
 
         # TODO: Log train accuracy to wandb
         #  Tip: use the tag 'Classification/train_acc'
+
+
+        pass
 
 
     def log_embeddings(self, model, train_loader, device):
@@ -78,4 +85,5 @@ class WandbLogger(Logger):
 
 
     def log_model_graph(self, model, train_loader):
+        # Wandb does not support logging the model graph
         pass
